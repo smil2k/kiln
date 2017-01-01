@@ -35,8 +35,7 @@ const int buttonRight = 6; //s5
 int sleepTime = 1000;
 
 const int LCD_RS = A3;
-const int LCD_RW = A4;
-const int LCD_EN = 11;
+const int LCD_EN = A4;
 
 const int LCD_D0 = 0;
 const int LCD_D1 = 10;
@@ -52,7 +51,7 @@ const int LCD_D7 = 7;
 #define TRY_LCD
 
 #ifdef TRY_LCD
-LiquidCrystal lcd(LCD_RS, LCD_RW, LCD_EN,
+LiquidCrystal lcd(LCD_RS, LCD_EN,
         LCD_D0, LCD_D1, LCD_D2, LCD_D3, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 #endif
 //SoftwareSerial mySerial(serialRX, serialTX); // RX, TX
