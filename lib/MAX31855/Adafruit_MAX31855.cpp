@@ -70,7 +70,7 @@ double Adafruit_MAX31855::readCelsius(void) {
   // get rid of internal temp data, and any fault bits
   v >>= 18;
 
-  return * 0.25;
+  return v * 0.25;
 }
 
 uint8_t Adafruit_MAX31855::readError() {

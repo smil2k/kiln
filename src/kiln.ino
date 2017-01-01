@@ -19,6 +19,7 @@
 //#include <SoftwareSerial.h>
 #include "Adafruit_MAX31855.h"
 #include "LiquidCrystal.h"
+#include "PinChangeInt.h"
 
 const int thermoDO = MISO;
 const int thermoCS = 5;
@@ -27,8 +28,8 @@ const int thermoCLK = SCK;
 const int backLight = A5;
 
 const int buttonUp = 4; //s1
-//const int buttonDown = ;//s2
-//const int buttonLeft = ; //S4
+const int buttonDownBMask = bit(6); //s2
+const int buttonLeftBMask = bit(7); //S4
 const int buttonRight = 6; //s5
 
 int sleepTime = 1000;
@@ -85,9 +86,30 @@ void setup() {
   pinMode(buttonUp, INPUT);
   pinMode(buttonRight, INPUT);
 
+  PCintPort::attachInterruptByMask(PORTB, buttonLeftBMask, &left);
+  PCintPort::attachInterruptByMask(PORTB, buttonDownBMask, &down);
+  PCintPort::attachInterrupt(buttonRight, &right);
+  PCintPort::attachInterrupt(buttonUp, &up);
 }
 
 int i = 0;
+int j = 0;
+
+void up() {
+  j += 10;
+}
+
+void down() {
+  j -= 10;
+}
+
+void right() {
+  j++;
+}
+
+void left() {
+  j--;
+}
 
 void loop() {
   i++;
@@ -96,10 +118,12 @@ void loop() {
   lcd.print(i % 10);
   lcd.print(" I = ");
   lcd.print(thermocouple.readInternal());
+  lcd.print("  ");
 
   double c = thermocouple.readCelsius();
   lcd.setCursor(0, 1);
-  lcd.print("C = ");
+  lcd.print(j);
+  lcd.print(" C = ");
   lcd.print(c);
   lcd.print("   ");
 
