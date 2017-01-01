@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
-    <logicalFolder name="MAX31855"
-                   displayName="MAX31855"
-                   projectFiles="true"
-                   root="lib/MAX31855">
-      <logicalFolder name="examples" displayName="examples" projectFiles="true">
-        <logicalFolder name="lcdthermocouple"
-                       displayName="lcdthermocouple"
-                       projectFiles="true">
-          <itemPath>lib/MAX31855/examples/lcdthermocouple/LCDthermocouple.pde</itemPath>
-        </logicalFolder>
-        <logicalFolder name="serialthermocouple"
-                       displayName="serialthermocouple"
-                       projectFiles="true">
-          <itemPath>lib/MAX31855/examples/serialthermocouple/serialthermocouple.pde</itemPath>
-        </logicalFolder>
-      </logicalFolder>
-      <itemPath>lib/MAX31855/Adafruit_MAX31855.cpp</itemPath>
-      <itemPath>lib/MAX31855/Adafruit_MAX31855.h</itemPath>
-      <itemPath>lib/MAX31855/README.txt</itemPath>
-      <itemPath>lib/MAX31855/keywords.txt</itemPath>
-      <itemPath>lib/MAX31855/license.txt</itemPath>
-    </logicalFolder>
+    <df root="lib/Metro" name="3">
+      <in>Metro.cpp</in>
+      <in>Metro.h</in>
+    </df>
+    <df root="lib/Module" name="4">
+      <in>Module.cpp</in>
+      <in>Module.h</in>
+    </df>
     <df root="lib/PinChangeInt" name="1">
       <df name="Examples">
         <df name="ByteBuffer">
@@ -33,7 +19,18 @@
       <in>PinChangeInt.h</in>
     </df>
     <df root="src" name="0">
+      <in>ManualControlPage.cpp</in>
+      <in>ManualControlPage.h</in>
+      <in>Page.cpp</in>
+      <in>Page.h</in>
+      <in>Thermocouple.cpp</in>
+      <in>Thermocouple.h</in>
+      <in>common.h</in>
+      <in>config.h</in>
       <in>kiln.ino</in>
+      <in>light.cpp</in>
+      <in>light.h</in>
+      <in>pitches.h</in>
     </df>
     <df root="lib/LiquidCrystal/src" name="2">
     </df>
@@ -49,8 +46,9 @@
   <sourceRootList>
     <Elem>src</Elem>
     <Elem>lib/LiquidCrystal/src</Elem>
-    <Elem>lib/MAX31855</Elem>
     <Elem>lib/PinChangeInt</Elem>
+    <Elem>lib/Metro</Elem>
+    <Elem>lib/Module</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -77,6 +75,8 @@
               <pElem>../../Software/arduino-1.0/hardware/arduino/variants/standard</pElem>
               <pElem>lib/LiquidCrystal/src</pElem>
               <pElem>lib/PinChangeInt</pElem>
+              <pElem>lib/Module</pElem>
+              <pElem>lib/Metro</pElem>
             </incDir>
             <preprocessorList>
               <Elem>ARDUINO=100</Elem>
@@ -91,25 +91,13 @@
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
-      <item path="lib/MAX31855/Adafruit_MAX31855.cpp" ex="false" tool="1" flavor2="0">
+      <item path="lib/Metro/Metro.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="lib/MAX31855/Adafruit_MAX31855.h" ex="false" tool="3" flavor2="0">
+      <item path="lib/Metro/Metro.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="lib/MAX31855/README.txt" ex="false" tool="3" flavor2="0">
+      <item path="lib/Module/Module.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="lib/MAX31855/examples/lcdthermocouple/LCDthermocouple.pde"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="lib/MAX31855/examples/serialthermocouple/serialthermocouple.pde"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="lib/MAX31855/keywords.txt" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="lib/MAX31855/license.txt" ex="false" tool="3" flavor2="0">
+      <item path="lib/Module/Module.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="lib/PinChangeInt/Examples/ByteBuffer/ByteBuffer.cpp"
             ex="false"
@@ -123,7 +111,29 @@
       </item>
       <item path="lib/PinChangeInt/PinChangeInt.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/ManualControlPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ManualControlPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Page.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Page.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Thermocouple.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Thermocouple.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/config.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/kiln.ino" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="src/light.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/light.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/pitches.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

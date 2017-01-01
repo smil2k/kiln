@@ -1,5 +1,8 @@
+
 /***************************************************
-  This is a library for the Adafruit Thermocouple Sensor w/MAX31855K
+  Based on ...
+
+    This is a library for the Adafruit Thermocouple Sensor w/MAX31855K
 
   Designed specifically to work with the Adafruit Thermocouple Sensor
   ----> https://www.adafruit.com/products/269
@@ -14,22 +17,28 @@
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
+#ifndef THERMOCOUPLE_H
+#define THERMOCOUPLE_H
 
-#if (ARDUINO >= 100)
- #include "Arduino.h"
-#else
- #include "WProgram.h"
-#endif
+#include <Module.h>
+#include <Metro.h>
 
-class Adafruit_MAX31855 {
- public:
-  Adafruit_MAX31855(int8_t SCLK, int8_t CS, int8_t MISO);
+class Thermocouple : private Module {
+public:
+  Thermocouple(int8_t sclk, int8_t miso, int8_t cs);
 
-  double readInternal(void);
-  double readCelsius(void);
-  uint8_t readError();
+  double GetTemperature();
+  double GetColdJunctionTemperature();
+  int GetReadError();
 
- private:
+  virtual void Loop();
+
+private:
   int8_t sclk, miso, cs;
-  uint32_t spiread32(void);
+  uint32_t currentValue;
+  Metro readTimer;
 };
+
+
+#endif /* THERMOCOUPLE_H */
+

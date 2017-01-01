@@ -12,8 +12,9 @@
             <sourceRootList>
                 <sourceRootElem>src</sourceRootElem>
                 <sourceRootElem>lib/LiquidCrystal/src</sourceRootElem>
-                <sourceRootElem>lib/MAX31855</sourceRootElem>
                 <sourceRootElem>lib/PinChangeInt</sourceRootElem>
+                <sourceRootElem>lib/Metro</sourceRootElem>
+                <sourceRootElem>lib/Module</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
