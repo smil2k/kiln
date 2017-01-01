@@ -1,16 +1,16 @@
-/*************************************************** 
+/***************************************************
   This is a library for the Adafruit Thermocouple Sensor w/MAX31855K
 
   Designed specifically to work with the Adafruit Thermocouple Sensor
   ----> https://www.adafruit.com/products/269
 
-  These displays use SPI to communicate, 3 pins are required to  
+  These displays use SPI to communicate, 3 pins are required to
   interface
-  Adafruit invests time and resources providing this open source code, 
-  please support Adafruit and open-source hardware by purchasing 
+  Adafruit invests time and resources providing this open source code,
+  please support Adafruit and open-source hardware by purchasing
   products from Adafruit!
 
-  Written by Limor Fried/Ladyada for Adafruit Industries.  
+  Written by Limor Fried/Ladyada for Adafruit Industries.
   BSD license, all text above must be included in any redistribution
  ****************************************************/
 
@@ -19,20 +19,25 @@
 #include <util/delay.h>
 #include <stdlib.h>
 
-
 Adafruit_MAX31855::Adafruit_MAX31855(int8_t SCLK, int8_t CS, int8_t MISO) {
   sclk = SCLK;
   cs = CS;
   miso = MISO;
 
-  //define pin modes
-  pinMode(cs, OUTPUT);
-  pinMode(sclk, OUTPUT); 
+  // We drive all three pins in open collector mode, therefore they
+  // need an external pull up to 3.3v. Some ten k range.
+
+  pinMode(cs, INPUT);
+  pinMode(sclk, INPUT);
   pinMode(miso, INPUT);
 
-  digitalWrite(cs, HIGH);
-}
+  // turn off internal pull up
+  // Additionally, this case switching to output mode drives the pin to ground.
+  digitalWrite(cs, LOW);
+  digitalWrite(sclk, LOW);
+  digitalWrite(miso, LOW);
 
+}
 
 double Adafruit_MAX31855::readInternal(void) {
   uint32_t v;
@@ -46,9 +51,8 @@ double Adafruit_MAX31855::readInternal(void) {
   float internal = v & 0x7FF;
   internal *= 0.0625; // LSB = 0.0625 degrees
   // check sign bit!
-  if (v & 0x800) 
+  if (v & 0x800)
     internal *= -1;
-  //Serial.print("\tInternal Temp: "); Serial.println(internal);
   return internal;
 }
 
@@ -58,67 +62,43 @@ double Adafruit_MAX31855::readCelsius(void) {
 
   v = spiread32();
 
-  //Serial.print("0x"); Serial.println(v, HEX);
-
-  /*
-  float internal = (v >> 4) & 0x7FF;
-  internal *= 0.0625;
-  if ((v >> 4) & 0x800) 
-    internal *= -1;
-  Serial.print("\tInternal Temp: "); Serial.println(internal);
-  */
-
   if (v & 0x7) {
-    // uh oh, a serious problem!
-    return NAN; 
+    // Error bits set!
+    return NAN;
   }
 
   // get rid of internal temp data, and any fault bits
   v >>= 18;
-  //Serial.println(v, HEX);
-  
-  double centigrade = v;
 
-  // LSB = 0.25 degrees C
-  centigrade *= 0.25;
-  return centigrade;
+  return * 0.25;
 }
 
 uint8_t Adafruit_MAX31855::readError() {
   return spiread32() & 0x7;
 }
 
-double Adafruit_MAX31855::readFarenheit(void) {
-  float f = readCelsius();
-  f *= 9.0;
-  f /= 5.0;
-  f += 32;
-  return f;
-}
-
-uint32_t Adafruit_MAX31855::spiread32(void) { 
+uint32_t Adafruit_MAX31855::spiread32(void) {
   int i;
   uint32_t d = 0;
 
-  digitalWrite(sclk, LOW);
+  pinMode(sclk, OUTPUT); // Drive it low
   _delay_ms(1);
-  digitalWrite(cs, LOW);
+  pinMode(cs, OUTPUT); // Drive it low
   _delay_ms(1);
 
-  for (i=31; i>=0; i--)
-  {
-    digitalWrite(sclk, LOW);
+  for (i = 31; i >= 0; i--) {
+    pinMode(sclk, OUTPUT); // Drive it low
     _delay_ms(1);
     d <<= 1;
     if (digitalRead(miso)) {
       d |= 1;
     }
 
-    digitalWrite(sclk, HIGH);
+    pinMode(sclk, INPUT); // Drive it high
     _delay_ms(1);
   }
 
-  digitalWrite(cs, HIGH);
-  //Serial.println(d, HEX);
+  pinMode(cs, INPUT); // Tristate : Drive it high (by external pull up!)
+
   return d;
 }

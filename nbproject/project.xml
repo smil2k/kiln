@@ -5,13 +5,15 @@
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>kiln</name>
             <c-extensions/>
-            <cpp-extensions>ino</cpp-extensions>
+            <cpp-extensions>cpp,ino</cpp-extensions>
             <header-extensions>h</header-extensions>
             <sourceEncoding>ISO-8859-2</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>src</sourceRootElem>
                 <sourceRootElem>lib/LiquidCrystal/src</sourceRootElem>
+                <sourceRootElem>lib/MAX31855</sourceRootElem>
+                <sourceRootElem>lib/PinChangeInt</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

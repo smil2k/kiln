@@ -5,8 +5,33 @@
                    displayName="MAX31855"
                    projectFiles="true"
                    root="lib/MAX31855">
+      <logicalFolder name="examples" displayName="examples" projectFiles="true">
+        <logicalFolder name="lcdthermocouple"
+                       displayName="lcdthermocouple"
+                       projectFiles="true">
+          <itemPath>lib/MAX31855/examples/lcdthermocouple/LCDthermocouple.pde</itemPath>
+        </logicalFolder>
+        <logicalFolder name="serialthermocouple"
+                       displayName="serialthermocouple"
+                       projectFiles="true">
+          <itemPath>lib/MAX31855/examples/serialthermocouple/serialthermocouple.pde</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <itemPath>lib/MAX31855/Adafruit_MAX31855.cpp</itemPath>
       <itemPath>lib/MAX31855/Adafruit_MAX31855.h</itemPath>
+      <itemPath>lib/MAX31855/README.txt</itemPath>
+      <itemPath>lib/MAX31855/keywords.txt</itemPath>
+      <itemPath>lib/MAX31855/license.txt</itemPath>
     </logicalFolder>
+    <df root="lib/PinChangeInt" name="1">
+      <df name="Examples">
+        <df name="ByteBuffer">
+          <in>ByteBuffer.cpp</in>
+          <in>ByteBuffer.h</in>
+        </df>
+      </df>
+      <in>PinChangeInt.h</in>
+    </df>
     <df root="src" name="0">
       <in>kiln.ino</in>
     </df>
@@ -24,6 +49,8 @@
   <sourceRootList>
     <Elem>src</Elem>
     <Elem>lib/LiquidCrystal/src</Elem>
+    <Elem>lib/MAX31855</Elem>
+    <Elem>lib/PinChangeInt</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -49,6 +76,7 @@
               <pElem>../../Software/arduino-1.0/hardware/arduino/cores/arduino</pElem>
               <pElem>../../Software/arduino-1.0/hardware/arduino/variants/standard</pElem>
               <pElem>lib/LiquidCrystal/src</pElem>
+              <pElem>lib/PinChangeInt</pElem>
             </incDir>
             <preprocessorList>
               <Elem>ARDUINO=100</Elem>
@@ -63,7 +91,37 @@
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
+      <item path="lib/MAX31855/Adafruit_MAX31855.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="lib/MAX31855/Adafruit_MAX31855.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/MAX31855/README.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/MAX31855/examples/lcdthermocouple/LCDthermocouple.pde"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="lib/MAX31855/examples/serialthermocouple/serialthermocouple.pde"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="lib/MAX31855/keywords.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/MAX31855/license.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/PinChangeInt/Examples/ByteBuffer/ByteBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="lib/PinChangeInt/Examples/ByteBuffer/ByteBuffer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="lib/PinChangeInt/PinChangeInt.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/kiln.ino" ex="false" tool="1" flavor2="4">
       </item>
