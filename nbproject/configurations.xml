@@ -18,21 +18,31 @@
       </df>
       <in>PinChangeInt.h</in>
     </df>
-    <df root="src" name="3">
+    <df root="lib/LiquidCrystal/src" name="3">
+    </df>
+    <df root="src" name="4">
+      <in>ButtonTestPage.cpp</in>
+      <in>ButtonTestPage.h</in>
+      <in>Heatelement.cpp</in>
+      <in>Heatelement.h</in>
+      <in>LCDTestPage.cpp</in>
+      <in>LCDTestPage.h</in>
       <in>ManualControlPage.cpp</in>
       <in>ManualControlPage.h</in>
+      <in>MenuPage.cpp</in>
+      <in>MenuPage.h</in>
       <in>Page.cpp</in>
       <in>Page.h</in>
       <in>Thermocouple.cpp</in>
       <in>Thermocouple.h</in>
+      <in>buttons.cpp</in>
+      <in>buttons.h</in>
       <in>common.h</in>
       <in>config.h</in>
       <in>kiln.ino</in>
       <in>light.cpp</in>
       <in>light.h</in>
       <in>pitches.h</in>
-    </df>
-    <df root="lib/LiquidCrystal/src" name="4">
     </df>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -44,11 +54,11 @@
   </logicalFolder>
   <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
   <sourceRootList>
-    <Elem>src</Elem>
     <Elem>lib/LiquidCrystal/src</Elem>
     <Elem>lib/PinChangeInt</Elem>
     <Elem>lib/Metro</Elem>
     <Elem>lib/Module</Elem>
+    <Elem>src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -111,9 +121,25 @@
       </item>
       <item path="lib/PinChangeInt/PinChangeInt.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/ButtonTestPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/ButtonTestPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Heatelement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Heatelement.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/LCDTestPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/LCDTestPage.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/ManualControlPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/ManualControlPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/MenuPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/MenuPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/Page.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -123,11 +149,15 @@
       </item>
       <item path="src/Thermocouple.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/buttons.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/buttons.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/common.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/config.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/kiln.ino" ex="false" tool="1" flavor2="4">
+      <item path="src/kiln.ino" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/light.cpp" ex="false" tool="1" flavor2="0">
       </item>

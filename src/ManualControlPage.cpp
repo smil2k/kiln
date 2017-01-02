@@ -17,7 +17,6 @@ void ManualControlPage::DoDraw() {
   char line[20];
   uint8_t error = thermocouple.GetReadError();
 
-  lcd.setCursor(0, 0);
   if (error) {
     lcd.print("TmERR = ");
     lcd.print(error, BIN);

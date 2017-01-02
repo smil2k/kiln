@@ -20,6 +20,8 @@
 #include "ManualControlPage.h"
 #include "buttons.h"
 #include "light.h"
+#include "LCDTestPage.h"
+#include "ButtonTestPage.h"
 
 Thermocouple thermocouple(thermoCLK, thermoDO, thermoCS);
 
@@ -29,24 +31,20 @@ LiquidCrystal lcd(LCD_RS, LCD_EN,
 Heatelement heater(PIN_HEATER);
 
 
-MenuPage mainMenu;
+MenuPage mainMenu("Kiln Control Menu");
+
 ManualControlPage manualPage(&mainMenu);
 
-MenuPage subMenu(&mainMenu);
+MenuPage testMenu("Test Menu", &mainMenu);
+
+LCDTestPage lcdpage(&testMenu);
+ButtonTestPage buttonTest(&testMenu);
 
 void setup() {
   lcd.begin(20, 2);
   lcd.noBlink();
   lcd.print("Loading...");
   Page::CurrentPage(&mainMenu);
-
-  mainMenu.AddMenu("Menu 1", &manualPage);
-  mainMenu.AddMenu("Menu 2", &manualPage);
-  mainMenu.AddMenu("Menu 3", &manualPage);
-  mainMenu.AddMenu("Menu 4", &manualPage);
-  mainMenu.AddMenu("Menu 5", &subMenu);
-
-  subMenu.AddMenu("A", &manualPage);
 
   setupLight(PIN_BACKLIGHT, 1000, 0);
   setupButtons();
@@ -73,6 +71,7 @@ int noteDurations[] = {
 void loop() {
   lightLoop();
   loopModules();
+  loopButtons();
 
   if (play) {
     for (int thisNote = 0; thisNote < 8; thisNote++) {

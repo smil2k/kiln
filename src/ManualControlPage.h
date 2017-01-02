@@ -14,11 +14,13 @@
 
 #include <Module.h>
 #include "Page.h"
+#include "MenuPage.h"
 
 class ManualControlPage : private Module, public Page {
 public:
 
-  ManualControlPage(Page *parent) : Page(parent) {
+  ManualControlPage(MenuPage *parent) : Page(parent) {
+    parent->AddMenu("Manual Control", this);
   };
 
   virtual void ButtonUp();

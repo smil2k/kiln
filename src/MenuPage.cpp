@@ -13,10 +13,17 @@
 #include "MenuPage.h"
 #include "common.h"
 
-MenuPage::MenuPage() : itemCount(0), current(0) {
+MenuPage::MenuPage(const char *menuName) :
+menuName(menuName),
+itemCount(0),
+current(0) {
 }
 
-MenuPage::MenuPage(Page* parent) : Page(parent), itemCount(0), current(0) {
+MenuPage::MenuPage(const char *menuName, MenuPage* parent) :
+Page(parent),
+menuName(menuName),
+itemCount(0), current(0) {
+  parent->AddMenu(menuName, this);
 
 }
 
@@ -48,7 +55,8 @@ void MenuPage::ButtonRight() {
 
 void MenuPage::DoDraw() {
   lcd.setCursor(0, 0);
-  lcd.print("Menu \x18 \x19,  \x20 to act");
+
+  lcd.print(menuName);
   lcd.setCursor(0, 1);
   if (items[current].text) {
     lcd.print(items[current].text);

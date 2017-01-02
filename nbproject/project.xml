@@ -10,11 +10,11 @@
             <sourceEncoding>ISO-8859-2</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>src</sourceRootElem>
                 <sourceRootElem>lib/LiquidCrystal/src</sourceRootElem>
                 <sourceRootElem>lib/PinChangeInt</sourceRootElem>
                 <sourceRootElem>lib/Metro</sourceRootElem>
                 <sourceRootElem>lib/Module</sourceRootElem>
+                <sourceRootElem>src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

@@ -32,6 +32,7 @@ Page* Page::CurrentPage() {
 
 void Page::CurrentPage(Page* page) {
   currentPage = page;
+  page->Activate();
 }
 
 void Page::ButtonLeft() {
@@ -45,6 +46,7 @@ void Page::Loop() {
     DoActiveLoop();
     if (metro.check()) {
       lcd.clear();
+      lcd.setCursor(0, 0);
       DoDraw();
       lcd.setCursor(19, 0);
       lcd.print(toggle ? ' ' : '.');

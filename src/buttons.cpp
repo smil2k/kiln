@@ -14,36 +14,32 @@
 #include "Page.h"
 #include "light.h"
 #include "PinChangeInt.h"
+#include <Metro.h>
+
+static bool upPressed = false;
+static bool downPressed = false;
+static bool rightPressed = false;
+static bool leftPressed = false;
+
+static Metro buttonCheck(50, 1);
 
 static void up() {
-  Page *c = Page::CurrentPage();
-  if (c) {
-    c->ButtonUp();
-  }
+  upPressed = true;
   turnOnLight();
 }
 
 static void down() {
-  Page *c = Page::CurrentPage();
-  if (c) {
-    c->ButtonDown();
-  }
+  downPressed = true;
   turnOnLight();
 }
 
 static void right() {
-  Page *c = Page::CurrentPage();
-  if (c) {
-    c->ButtonRight();
-  }
+  rightPressed = true;
   turnOnLight();
 }
 
 static void left() {
-  Page *c = Page::CurrentPage();
-  if (c) {
-    c->ButtonLeft();
-  }
+  leftPressed = true;
   turnOnLight();
 }
 
@@ -55,6 +51,29 @@ void setupButtons() {
 
   pinMode(PIN_BUTTON_UP, INPUT);
   pinMode(PIN_BUTTON_RIGHT, INPUT);
+}
 
+void loopButtons() {
+  if (buttonCheck.check()) {
+    Page *c = Page::CurrentPage();
+    if (c) {
+      if (upPressed) {
+        c->ButtonUp();
+        upPressed = false;
+      }
+      if (downPressed) {
+        c->ButtonDown();
+        downPressed = false;
+      }
+      if (leftPressed) {
+        c->ButtonLeft();
+        leftPressed = false;
+      }
+      if (rightPressed) {
+        c->ButtonRight();
+        rightPressed = false;
+      }
+    }
+  }
 }
 

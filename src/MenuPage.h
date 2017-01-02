@@ -23,8 +23,8 @@ struct MenuItem {
 
 class MenuPage : public Page {
 public:
-  MenuPage();
-  MenuPage(Page * parent);
+  MenuPage(const char *menuName);
+  MenuPage(const char *menuName, MenuPage * parent);
 
   void AddMenu(const char *itemName, Page *page);
 
@@ -37,6 +37,7 @@ private:
   virtual void ButtonDown();
   virtual void ButtonRight();
 
+  const char *menuName;
   int8_t current;
   uint8_t itemCount;
   MenuItem items[MAX_MENU_ITEMS];

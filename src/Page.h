@@ -24,6 +24,8 @@ protected:
 
   virtual void DoActiveLoop() {};
   virtual void DoBackgroundLoop() {};
+  virtual void Activate() {};
+  
   virtual void DoDraw() = 0;
 public:
 
