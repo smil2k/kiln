@@ -46,7 +46,7 @@ double Thermocouple::GetColdJunctionTemperature() {
   return internal;
 }
 
-int Thermocouple::GetReadError() {
+uint8_t Thermocouple::GetReadError() {
   return currentValue & 0x7;
 }
 

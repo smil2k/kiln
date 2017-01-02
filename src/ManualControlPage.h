@@ -15,21 +15,20 @@
 #include <Module.h>
 #include "Page.h"
 
-class ManualControlPage : private Module, public Page{
+class ManualControlPage : private Module, public Page {
 public:
-  ManualControlPage() {}
-  virtual ~ManualControlPage(){}
+
+  ManualControlPage(Page *parent) : Page(parent) {
+  };
 
   virtual void ButtonUp();
   virtual void ButtonDown();
   virtual void ButtonRight();
 
-  virtual void DoActiveLoop() {};
-  virtual void DoBackgroundLoop();
-
   virtual void DoDraw();
 private:
-
+  void SetDuty(uint8_t duty);
+  bool dutyMode;
 };
 
 #endif /* MANUALCONTROLPAGE_H */

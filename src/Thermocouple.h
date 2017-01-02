@@ -29,7 +29,7 @@ public:
 
   double GetTemperature();
   double GetColdJunctionTemperature();
-  int GetReadError();
+  uint8_t GetReadError();
 
   virtual void Loop();
 

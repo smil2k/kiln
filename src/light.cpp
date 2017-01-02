@@ -28,6 +28,6 @@ void turnOnLight() {
 }
 
 void lightLoop() {
-  digitalWrite(backlightPin, millis() > lightsUntil ? LOW : HIGH);
+  //digitalWrite(backlightPin, millis() > lightsUntil ? LOW : HIGH);
 }
 

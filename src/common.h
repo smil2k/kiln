@@ -6,10 +6,11 @@
 #include "LiquidCrystal.h"
 #include "config.h"
 #include "pitches.h"
-#include "light.h"
+#include "Heatelement.h"
 
 extern Thermocouple thermocouple;
 extern LiquidCrystal lcd;
+extern Heatelement heater;
 
 #endif	// COMMON_H
 

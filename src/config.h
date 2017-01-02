@@ -19,8 +19,11 @@ const int PIN_MASK_BUTTON_LEFT = bit(7);
 const int PIN_PORT_BUTTON_LEFT = PORTB;
 const int PIN_BUTTON_RIGHT = 6;
 
+const int PIN_TONE = 11;
+
+const int PIN_HEATER = PIN_BACKLIGHT;
+
 const int LCD_RS = A3;
-const int TONE = 11;
 const int LCD_EN = A4;
 
 const int LCD_D0 = 0;

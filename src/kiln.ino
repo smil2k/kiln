@@ -16,36 +16,45 @@
  ****************************************************/
 
 #include "common.h"
-#include "PinChangeInt.h"
-#include "config.h"
+#include "MenuPage.h"
 #include "ManualControlPage.h"
+#include "buttons.h"
+#include "light.h"
 
-Thermocouple thermocouple(thermoCLK, thermoCS, thermoDO);
+Thermocouple thermocouple(thermoCLK, thermoDO, thermoCS);
 
 LiquidCrystal lcd(LCD_RS, LCD_EN,
         LCD_D0, LCD_D1, LCD_D2, LCD_D3, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
-ManualControlPage manualPage;
+Heatelement heater(PIN_HEATER);
 
+
+MenuPage mainMenu;
+ManualControlPage manualPage(&mainMenu);
+
+MenuPage subMenu(&mainMenu);
 
 void setup() {
-  Page::CurrentPage(&manualPage);
+  lcd.begin(20, 2);
+  lcd.noBlink();
+  lcd.print("Loading...");
+  Page::CurrentPage(&mainMenu);
+
+  mainMenu.AddMenu("Menu 1", &manualPage);
+  mainMenu.AddMenu("Menu 2", &manualPage);
+  mainMenu.AddMenu("Menu 3", &manualPage);
+  mainMenu.AddMenu("Menu 4", &manualPage);
+  mainMenu.AddMenu("Menu 5", &subMenu);
+
+  subMenu.AddMenu("A", &manualPage);
+
+  setupLight(PIN_BACKLIGHT, 1000, 0);
+  setupButtons();
 
   beginModules();
 
-  lcd.begin(20, 2);
-  lcd.noBlink();
-  lcd.print("Hello");
-
-  setupLight(PIN_BACKLIGHT, 1000, 0);
-
-  pinMode(PIN_BUTTON_UP, INPUT);
-  pinMode(PIN_BUTTON_RIGHT, INPUT);
-
-  PCintPort::attachInterruptByMask(PIN_PORT_BUTTON_LEFT, PIN_MASK_BUTTON_LEFT, &left);
-  PCintPort::attachInterruptByMask(PIN_PORT_BUTTON_DOWN, PIN_MASK_BUTTON_DOWN, &down);
-  PCintPort::attachInterrupt(PIN_BUTTON_RIGHT, &right);
-  PCintPort::attachInterrupt(PIN_BUTTON_UP, &up);
+  lcd.clear();
+  lcd.print("Done");
 }
 
 int i = 0;
@@ -61,38 +70,6 @@ int noteDurations[] = {
   4, 8, 8, 4, 4, 4, 4, 4
 };
 
-void up() {
-  Page *c = Page::CurrentPage();
-  if (c) {
-    c->ButtonUp();
-  }
-  turnOnLight();
-}
-
-void down() {
-  Page *c = Page::CurrentPage();
-  if (c) {
-    c->ButtonDown();
-  }
-  turnOnLight();
-}
-
-void right() {
-  Page *c = Page::CurrentPage();
-  if (c) {
-    c->ButtonRight();
-  }
-  turnOnLight();
-}
-
-void left() {
-  Page *c = Page::CurrentPage();
-  if (c) {
-    c->ButtonLeft();
-  }
-  turnOnLight();
-}
-
 void loop() {
   lightLoop();
   loopModules();
@@ -105,14 +82,14 @@ void loop() {
       //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
       int noteDuration = 1000 / noteDurations[thisNote];
       //analogWrite(TONE, melody[thisNote] );
-      tone(TONE, melody[thisNote], noteDuration);
+      tone(PIN_TONE, melody[thisNote], noteDuration);
       //delay(noteDuration);
       // to distinguish the notes, set a minimum time between them.
       // the note's duration + 30% seems to work well:
       int pauseBetweenNotes = noteDuration * 1.30;
       delay(pauseBetweenNotes);
       // stop the tone playing:
-      noTone(TONE);
+      noTone(PIN_TONE);
     }
     play = 0;
   }
