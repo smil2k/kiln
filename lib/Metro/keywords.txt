@@ -1,19 +1,23 @@
 #######################################
-# Syntax Coloring Map for NewSoftSerial
+# Syntax Coloring Map For Test
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-max6675	KEYWORD1
+Metro	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-readCelsius	KEYWORD2
-readFarenheit	KEYWORD2
+check	KEYWORD2
+interval	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
 
 #######################################
 # Constants (LITERAL1)
