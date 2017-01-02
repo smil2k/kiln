@@ -111,17 +111,9 @@
       </item>
       <item path="lib/PinChangeInt/PinChangeInt.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/Heatelement.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/Heatelement.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="src/ManualControlPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/ManualControlPage.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/MenuPage.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/MenuPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/Page.cpp" ex="false" tool="1" flavor2="0">
       </item>
