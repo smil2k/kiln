@@ -22,6 +22,7 @@
 #include "light.h"
 #include "LCDTestPage.h"
 #include "ButtonTestPage.h"
+#include "programpage/EditProgramPage.h"
 
 Thermocouple thermocouple(thermoCLK, thermoDO, thermoCS);
 
@@ -34,6 +35,7 @@ Heatelement heater(PIN_HEATER);
 MenuPage mainMenu("Kiln Control Menu");
 
 ManualControlPage manualPage(&mainMenu);
+EditProgramPage programPage(&mainMenu);
 
 MenuPage testMenu("Test Menu", &mainMenu);
 

@@ -21,6 +21,14 @@
     <df root="lib/LiquidCrystal/src" name="3">
     </df>
     <df root="src" name="4">
+      <df name="programpage">
+        <in>EditProgramPage.cpp</in>
+        <in>EditProgramPage.h</in>
+        <in>ProgramEditor.cpp</in>
+        <in>ProgramEditor.h</in>
+        <in>ProgramPage.cpp</in>
+        <in>ProgramPage.h</in>
+      </df>
       <in>ButtonTestPage.cpp</in>
       <in>ButtonTestPage.h</in>
       <in>Heatelement.cpp</in>
@@ -164,6 +172,21 @@
       <item path="src/light.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/pitches.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/programpage/EditProgramPage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/programpage/EditProgramPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/programpage/ProgramEditor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/programpage/ProgramEditor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/programpage/ProgramPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/programpage/ProgramPage.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
