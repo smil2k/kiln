@@ -9,9 +9,9 @@
  * Created on January 2, 2017, 2:44 PM
  */
 
-#include "common.h"
+#include "../common.h"
 #include "buttons.h"
-#include "Page.h"
+#include "../Page.h"
 #include "light.h"
 #include "PinChangeInt.h"
 #include <Metro.h>

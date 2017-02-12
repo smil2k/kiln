@@ -21,17 +21,32 @@
     <df root="lib/LiquidCrystal/src" name="3">
     </df>
     <df root="src" name="4">
+      <df name="hw">
+        <in>Thermocouple.cpp</in>
+        <in>Thermocouple.h</in>
+        <in>buttons.cpp</in>
+        <in>buttons.h</in>
+        <in>heater.cpp</in>
+        <in>heater.h</in>
+        <in>light.cpp</in>
+        <in>light.h</in>
+      </df>
+      <df name="kilnoperation">
+        <in>KilnOperation.cpp</in>
+        <in>KilnOperation.h</in>
+      </df>
       <df name="programpage">
+        <in>BaseProgramListPage.cpp</in>
+        <in>BaseProgramListPage.h</in>
         <in>EditProgramPage.cpp</in>
         <in>EditProgramPage.h</in>
         <in>ProgramEditor.cpp</in>
         <in>ProgramEditor.h</in>
-        <in>ProgramPage.cpp</in>
-        <in>ProgramPage.h</in>
+        <in>ProgramEditorOperations.cpp</in>
+        <in>ProgramEditorOperations.h</in>
       </df>
       <in>ButtonTestPage.cpp</in>
       <in>ButtonTestPage.h</in>
-      <in>Heatelement.cpp</in>
       <in>Heatelement.h</in>
       <in>LCDTestPage.cpp</in>
       <in>LCDTestPage.h</in>
@@ -41,16 +56,34 @@
       <in>MenuPage.h</in>
       <in>Page.cpp</in>
       <in>Page.h</in>
-      <in>Thermocouple.cpp</in>
-      <in>Thermocouple.h</in>
-      <in>buttons.cpp</in>
-      <in>buttons.h</in>
+      <in>common.cpp</in>
       <in>common.h</in>
       <in>config.h</in>
       <in>kiln.ino</in>
-      <in>light.cpp</in>
-      <in>light.h</in>
       <in>pitches.h</in>
+    </df>
+    <df root="test" name="5">
+      <df name="avr">
+        <in>eeprom.h</in>
+      </df>
+      <df name="mock">
+        <in>Arduino.c</in>
+        <in>EEPROM.cpp</in>
+        <in>MockTime.cpp</in>
+        <in>MockTime.h</in>
+        <in>light.cpp</in>
+      </df>
+      <df name="sim">
+        <in>LiquidCrystal.cpp</in>
+        <in>RealTime.cpp</in>
+        <in>ThermoHeat.cpp</in>
+        <in>button.cpp</in>
+      </df>
+      <in>Arduino.h</in>
+      <in>LiquidCrystal.h</in>
+      <in>Makefile</in>
+      <in>simulator.cpp</in>
+      <in>test.cpp</in>
     </df>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -67,6 +100,7 @@
     <Elem>lib/Metro</Elem>
     <Elem>lib/Module</Elem>
     <Elem>src</Elem>
+    <Elem>test</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -81,7 +115,7 @@
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>ino build</buildCommand>
+          <buildCommand>bash -c "LD_PRELOAD= ino build"</buildCommand>
           <cleanCommand>ino clean</cleanCommand>
           <executablePath></executablePath>
           <ccTool>
@@ -133,8 +167,6 @@
       </item>
       <item path="src/ButtonTestPage.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/Heatelement.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="src/Heatelement.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/LCDTestPage.cpp" ex="false" tool="1" flavor2="0">
@@ -153,25 +185,48 @@
       </item>
       <item path="src/Page.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/Thermocouple.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/Thermocouple.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/buttons.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/buttons.h" ex="false" tool="3" flavor2="0">
+      <item path="src/common.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/common.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/config.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/hw/Thermocouple.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hw/Thermocouple.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hw/buttons.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hw/buttons.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hw/heater.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hw/heater.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hw/light.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hw/light.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/kiln.ino" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/light.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/kilnoperation/KilnOperation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="src/light.h" ex="false" tool="3" flavor2="0">
+      <item path="src/kilnoperation/KilnOperation.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/pitches.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/programpage/BaseProgramListPage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/programpage/BaseProgramListPage.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="src/programpage/EditProgramPage.cpp"
             ex="false"
@@ -184,9 +239,45 @@
       </item>
       <item path="src/programpage/ProgramEditor.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/programpage/ProgramPage.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/programpage/ProgramEditorOperations.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="src/programpage/ProgramPage.h" ex="false" tool="3" flavor2="0">
+      <item path="src/programpage/ProgramEditorOperations.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="test/Arduino.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="test/LiquidCrystal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="test/Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="test/avr/eeprom.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="test/mock/Arduino.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="test/mock/EEPROM.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="test/mock/MockTime.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="test/mock/MockTime.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="test/mock/light.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="test/sim/LiquidCrystal.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="test/sim/RealTime.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="test/sim/ThermoHeat.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="test/sim/button.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="test/simulator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="test/test.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

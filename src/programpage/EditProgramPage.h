@@ -13,13 +13,16 @@
 #ifndef EDITPROGRAMPAGE_H
 #define EDITPROGRAMPAGE_H
 
-#include "ProgramPage.h"
+#include "BaseProgramListPage.h"
 
-class EditProgramPage : public ProgramPage {
+class EditProgramPage : public BaseProgramListPage {
 public:
   EditProgramPage(MenuPage *parent);
+  void SetEditor(Page *page);
 private:
   virtual void ButtonRight();
+
+  Page *editor;
 };
 
 #endif // EDITPROGRAMPAGE_H

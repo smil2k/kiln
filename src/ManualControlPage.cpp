@@ -11,7 +11,7 @@
 
 #include "ManualControlPage.h"
 #include "common.h"
-#include "Thermocouple.h"
+#include "hw/Thermocouple.h"
 
 void ManualControlPage::DoDraw() {
   char line[20];

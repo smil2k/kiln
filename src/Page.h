@@ -22,11 +22,17 @@ protected:
   Page(Page *parent);
   virtual ~Page();
 
-  virtual void DoActiveLoop() {};
-  virtual void DoBackgroundLoop() {};
-  virtual void Activate() {};
-  
+  virtual void DoActiveLoop() {
+  };
+
+  virtual void DoBackgroundLoop() {
+  };
+
+  virtual void Activate() {
+  };
+
   virtual void DoDraw() = 0;
+  
 public:
 
   virtual void ButtonUp() {
@@ -45,8 +51,9 @@ public:
   static Page *CurrentPage();
   static void CurrentPage(Page *page);
 
-private:
+protected:
   Page *parent;
+private:
   static Page *currentPage;
   static bool toggle;
   static Metro metro;

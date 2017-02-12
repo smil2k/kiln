@@ -11,13 +11,14 @@
 
 #include "common.h"
 #include "Heatelement.h"
+#include "hw/heater.h"
 
 Heatelement::Heatelement(int pin) :
 pin(pin),
 heatCheck(100, 1),
 autoCheck(1000, 1) {
-  pinMode(pin, OUTPUT);
-  digitalWrite(pin, LOW);
+  SetupHeater(pin);
+  ControlHeater(pin, false);
 }
 
 void Heatelement::AutoControl(double target) {
@@ -42,10 +43,10 @@ void Heatelement::KeepDuty() {
   if (heatCheck.check()) {
     switch (duty) {
       case 0:
-        digitalWrite(pin, LOW);
+        ControlHeater(pin, false);
         return;
       case 100:
-        digitalWrite(pin, HIGH);
+        ControlHeater(pin, true);
         return;
       default:
         bool heat = false;
@@ -65,7 +66,7 @@ void Heatelement::KeepDuty() {
           heatedSlots++;
         }
 
-        digitalWrite(pin, heat ? HIGH : LOW);
+        ControlHeater(pin, heat);
     }
   }
 }

@@ -11,51 +11,57 @@
 
 #include "../common.h"
 #include <avr/eeprom.h>
-#include "ProgramPage.h"
+#include "BaseProgramListPage.h"
 
-bool ProgramPage::programsLoaded;
-Program ProgramPage::programs[10];
+bool BaseProgramListPage::programsLoaded;
+Program BaseProgramListPage::programs[MAX_PROGRAMS];
 
-ProgramPage::ProgramPage(MenuPage* parent) : Page(parent) {
+BaseProgramListPage::BaseProgramListPage(MenuPage* parent) : Page(parent) {
 }
 
-void ProgramPage::Begin() {
+void BaseProgramListPage::Begin() {
   if (!programsLoaded) {
     lcd.clear();
     lcd.print("Loading programs...");
 
-    for (uint8_t i = 0; i < 10; i++) {
+    for (uint8_t i = 0; i < MAX_PROGRAMS; i++) {
       Load(i, &programs[i]);
     }
     programsLoaded = true;
   }
 }
 
-void ProgramPage::DoDraw() {
+void BaseProgramListPage::DoDraw() {
   lcd.clear();
   lcd.print("Select program");
   lcd.setCursor(0, 1);
   lcd.print("P");
-  lcd.print( current + 1 );
-  lcd.print(programs[current].count ? " Used" : " Free");
+  lcd.print(current + 1);
+  if (programs[current].count) {
+    lcd.print(" ");
+    lcd.print(programs[current].count);
+    lcd.print(" steps");
+  } else {
+    lcd.print(" Empty");
+  }
 }
 
-void ProgramPage::ButtonDown() {
-  current = (current + 1) % 10;
+void BaseProgramListPage::ButtonDown() {
+  current = (current + 1) % MAX_PROGRAMS;
 }
 
-void ProgramPage::ButtonUp() {
-  current --;
-  if ( current < 0) {
-    current = 9;
+void BaseProgramListPage::ButtonUp() {
+  current--;
+  if (current < 0) {
+    current = MAX_PROGRAMS - 1;
   }
 }
 
 uint8_t *GetPosition(uint8_t index) {
-  return (uint8_t *) (index * 100); // exactly: (30 * 3 + 2); // 30 entries, 3 bytes each, + 2 control.
+  return (uint8_t *) (index * (MAX_PROGRAM_STEPS * 3 + 2));
 }
 
-void ProgramPage::Load(uint8_t index, Program* p) {
+void BaseProgramListPage::Load(uint8_t index, Program* p) {
   uint8_t *pos = GetPosition(index);
   uint8_t count = eeprom_read_byte(pos);
   if (count <= 30 && count > 0) {
@@ -74,7 +80,7 @@ void ProgramPage::Load(uint8_t index, Program* p) {
   memset(p, 0, sizeof (Program));
 }
 
-void ProgramPage::Save(uint8_t index, Program* p) {
+void BaseProgramListPage::Save(uint8_t index, Program* p) {
   uint8_t *pos = GetPosition(index);
 
   eeprom_write_byte(pos, p->count);
@@ -87,6 +93,17 @@ void ProgramPage::Save(uint8_t index, Program* p) {
     eeprom_write_byte(pos, p->count);
   }
 }
+
+Program *BaseProgramListPage::GetCurrent() {
+  return &programs[current];
+}
+
+void BaseProgramListPage::SaveCurrent(Program* program) {
+  Save(current, program);
+  memcpy(&programs[current], program, sizeof (Program));
+}
+
+
 
 
 

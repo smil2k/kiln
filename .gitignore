@@ -1,3 +1,6 @@
 private
 .build
 *.map
+*.o
+test/test
+test/simulator

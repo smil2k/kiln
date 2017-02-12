@@ -16,7 +16,7 @@
 #include "Page.h"
 #include "MenuPage.h"
 
-class ManualControlPage : private Module, public Page {
+class ManualControlPage : public Page {
 public:
 
   ManualControlPage(MenuPage *parent) : Page(parent) {

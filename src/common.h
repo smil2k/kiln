@@ -2,7 +2,7 @@
 #define COMMON_H
 
 #include <Arduino.h>
-#include "Thermocouple.h"
+#include "hw/Thermocouple.h"
 #include "LiquidCrystal.h"
 #include "config.h"
 #include "pitches.h"

@@ -11,12 +11,14 @@
 
 #include "EditProgramPage.h"
 
-EditProgramPage::EditProgramPage(MenuPage* parent) : ProgramPage(parent) {
-  parent->AddMenu("Edit Program", this);
+EditProgramPage::EditProgramPage(MenuPage* parent) : BaseProgramListPage(parent) {
+  parent->AddMenu("Edit Programs", this);
 }
 
 void EditProgramPage::ButtonRight() {
-  
+  CurrentPage(editor);
+
 }
-
-
+void EditProgramPage::SetEditor(Page* page) {
+  this->editor = page;
+}
