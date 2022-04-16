@@ -91,7 +91,7 @@ public:
   void print(const char *text);
   void print(char ch);
   void print(int, int = DEC);
-  //void print(unsigned char ch, int = DEC);
+  void print(long, int = DEC);
   void print(double, int = 2);
 private:
   char *memory;

@@ -79,11 +79,15 @@
         <in>ThermoHeat.cpp</in>
         <in>button.cpp</in>
       </df>
+      <df name="testcases">
+        <in>testeditor.cpp</in>
+      </df>
       <in>Arduino.h</in>
       <in>LiquidCrystal.h</in>
       <in>Makefile</in>
       <in>simulator.cpp</in>
-      <in>test.cpp</in>
+      <in>testrunner.cpp</in>
+      <in>testrunner.h</in>
     </df>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -277,7 +281,11 @@
       </item>
       <item path="test/simulator.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="test/test.cpp" ex="false" tool="1" flavor2="0">
+      <item path="test/testcases/testeditor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="test/testrunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="test/testrunner.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

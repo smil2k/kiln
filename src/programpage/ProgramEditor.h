@@ -15,36 +15,44 @@
 #include "../common.h"
 #include "EditProgramPage.h"
 
-struct ProgramStep {
+class ProgramEditor;
+
+class ProgramStep {
   uint8_t operation;
   uint16_t parameter;
 
+private:
   ProgramStep *next;
+  ProgramStep *prev;
+
+  friend class ProgramEditor;
 };
 
-class ProgramEditor;
 
 class Operation {
 public:
   Operation(ProgramEditor* parent, const char* operationName);
 
-  virtual void ButtonUp() {
+  virtual void ButtonPrev() {
     DoAction();
   };
 
-  virtual void ButtonDown() {
+  virtual void ButtonNext() {
     DoAction();
   };
 
   virtual void DoDraw();
-  virtual void DoAction() = 0;
+  virtual void DoAction() {};
+
+  virtual bool CanActivate();
 
 protected:
   ProgramEditor *parent;
 
 private:
-  Operation *next;
   const char *operationName;
+  Operation *next;
+  Operation *prev;
   friend class ProgramEditor;
 };
 
@@ -57,6 +65,20 @@ public:
   void DisposeSteps();
 
   void AddOperation(Operation *operation);
+
+  ProgramStep *RemoveCurrent();
+  void AddBelowCurrent(ProgramStep *step);
+  void SetHead();
+  void JumpToFirstRow();
+  void Next();
+  void Prev();
+  bool HasOneRowOnly();
+  bool AtFirstRow();
+  bool AtLastRow();
+
+  ProgramStep *Current();
+  void DrawDefault();
+
 private:
 
   virtual void Activate();
@@ -71,12 +93,12 @@ private:
 
   virtual void ButtonUp();
 
-  Operation *operations;
+
+  Operation *operationsTail;
   Operation *current;
-public:
-  EditProgramPage* parent;
   ProgramStep *stepsHead;
   ProgramStep *stepsCurrent;
+  EditProgramPage* parent;
 };
 
 #include "ProgramEditorOperations.h"

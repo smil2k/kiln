@@ -76,6 +76,11 @@ void LiquidCrystal::print(char ch) {
   cursor += sprintf(cursor, "%c", ch);
 }
 
+void LiquidCrystal::print(long number, int sys) {
+  // todo system ignored!
+  cursor += sprintf(cursor, "%d", number);
+}
+
 void LiquidCrystal::print(int number, int sys) {
   // todo system ignored!
   cursor += sprintf(cursor, "%d", number);

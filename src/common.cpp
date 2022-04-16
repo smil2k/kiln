@@ -22,16 +22,25 @@ Heatelement heater(PIN_HEATER);
 
 MenuPage mainMenu("Kiln Control Menu");
 
-ManualControlPage manualPage(&mainMenu);
-EditProgramPage programPage(&mainMenu);
+static ManualControlPage manualPage(&mainMenu);
+static EditProgramPage programPage(&mainMenu);
 
-ProgramEditor editor(&programPage);
-BackOperation back(&editor);
+static ProgramEditor editor(&programPage);
 
-MenuPage testMenu("Test Menu", &mainMenu);
+static HelpOperation opHelp(&editor);
+static SelectRowOperation opSelRow(&editor);
+static DeleteRowOperation opDelete(&editor);
+static NewRowOperation opNewRow(&editor);
+static MoveRowOperation opMoveRow(&editor);
 
-LCDTestPage lcdpage(&testMenu);
-ButtonTestPage buttonTest(&testMenu);
+static ClearOperation opClear(&editor);
+static SaveAndBackOperation opSaveAndBack(&editor);
+static BackOperation opBack(&editor);
+
+static MenuPage testMenu("Test Menu", &mainMenu);
+
+static LCDTestPage lcdpage(&testMenu);
+static ButtonTestPage buttonTest(&testMenu);
 
 void setup() {
   lcd.begin(20, 2);

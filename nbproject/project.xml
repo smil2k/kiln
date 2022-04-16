@@ -5,7 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>kiln</name>
             <c-extensions>c,cpp</c-extensions>
-            <cpp-extensions>ino</cpp-extensions>
+            <cpp-extensions>ino,o</cpp-extensions>
             <header-extensions>h</header-extensions>
             <sourceEncoding>ISO-8859-2</sourceEncoding>
             <make-dep-projects/>

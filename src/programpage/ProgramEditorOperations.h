@@ -12,14 +12,34 @@
 #ifndef PROGRAMEDITOROPERATIONS_H
 #define PROGRAMEDITOROPERATIONS_H
 
+class HelpOperation : public Operation {
+public:
+
+  HelpOperation(ProgramEditor* parent) : Operation(parent, NULL) {
+  }
+
+  virtual void DoDraw();
+
+  virtual void DoAction() {
+  };
+
+  virtual bool CanActivate() {
+    return false;
+  }
+};
+
 class NewRowOperation : public Operation {
 public:
 
   NewRowOperation(ProgramEditor* parent) : Operation(parent, "New Row Above/Below") {
   }
 
-  virtual void ButtonUp();
-  virtual void ButtonDown();
+  virtual void ButtonPrev();
+  virtual void ButtonNext();
+
+  virtual bool CanActivate() {
+    return true;
+  }
 };
 
 class SelectRowOperation : public Operation {
@@ -28,8 +48,8 @@ public:
   SelectRowOperation(ProgramEditor* parent) : Operation(parent, "Select Row") {
   }
 
-  virtual void ButtonUp();
-  virtual void ButtonDown();
+  virtual void ButtonPrev();
+  virtual void ButtonNext();
 };
 
 class MoveRowOperation : public Operation {
@@ -38,8 +58,10 @@ public:
   MoveRowOperation(ProgramEditor* parent) : Operation(parent, "Move Row") {
   }
 
-  virtual void ButtonUp();
-  virtual void ButtonDown();
+  virtual void ButtonPrev();
+  virtual void ButtonNext();
+  virtual bool CanActivate();
+
 };
 
 class SelectOpCodeOperation : public Operation {
@@ -48,8 +70,8 @@ public:
   SelectOpCodeOperation(ProgramEditor* parent) : Operation(parent, "Select Operation") {
   }
 
-  virtual void ButtonUp();
-  virtual void ButtonDown();
+  virtual void ButtonPrev();
+  virtual void ButtonNext();
 };
 
 class AlterValueOperation : public Operation {
@@ -59,8 +81,8 @@ public:
   : Operation(parent, "Value"), value(value) {
   }
 
-  virtual void ButtonUp();
-  virtual void ButtonDown();
+  virtual void ButtonPrev();
+  virtual void ButtonNext();
 
   uint8_t value;
 };
@@ -88,7 +110,6 @@ public:
 
   PasteRowOperation(ProgramEditor* parent) : Operation(parent, "Paste Row") {
   }
-
   virtual void DoAction();
 };
 
@@ -112,9 +133,13 @@ public:
 
 class BackOperation : public Operation {
 public:
+
   BackOperation(ProgramEditor* parent) : Operation(parent, "Cancel Edit") {
   }
 
+  virtual bool CanActivate() {
+    return true;
+  }
   virtual void DoAction();
 };
 
@@ -122,6 +147,10 @@ class SaveAndBackOperation : public Operation {
 public:
 
   SaveAndBackOperation(ProgramEditor* parent) : Operation(parent, "Save And Exit") {
+  }
+
+  virtual bool CanActivate() {
+    return true;
   }
 
   virtual void DoAction();

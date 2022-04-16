@@ -14,7 +14,7 @@
 
 Page *Page::currentPage = 0L;
 bool Page::toggle;
-Metro Page::metro(500);
+Metro Page::metro(200);
 
 Page::Page(Page* parent) : parent(parent) {
 }
